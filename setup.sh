@@ -16,6 +16,7 @@ DIR=`pwd`
 FONT_DIR="/usr/local/share/fonts"
 #ROFI_DIR="$HOME/.config/rofi"
 ROFI_DIR="/usr/local/share/rofi"
+PROFILE_DIR="/etc/profile.d"
 
 # Install Fonts
 install_fonts() {
@@ -32,26 +33,43 @@ install_fonts() {
 
 # Install Themes
 install_themes() {
-	if [[ -d "$ROFI_DIR" ]]; then
-		echo -e ${BPurple}"[*] Creating a backup of your rofi configs..." ${Color_Off}
-		mv "$ROFI_DIR" "${ROFI_DIR}.${USER}"
-	fi
+#	if [[ -d "$ROFI_DIR" ]]; then
+#		echo -e ${BPurple}"[*] Creating a backup of your rofi configs..." ${Color_Off}
+#		mv "$ROFI_DIR" "${ROFI_DIR}.${USER}"
+#	fi
 	echo -e ${BBlue}"[*] Installing rofi configs..." ${Color_Off}
 	{ mkdir -p "$ROFI_DIR"; cp -rf $DIR/files/* "$ROFI_DIR"; }
 
 	if [[ -f "$ROFI_DIR/config.rasi" ]]; then
 		echo -e ${BGreen}"[*] Successfully Installed.\n" ${Color_Off}
-		exit 0
 	else
 		echo -e ${BRed}"[!] Failed to install.\n" ${Color_Off}
 		exit 1
 	fi
 }
 
+# Install Profile
+install_profile() {
+
+	echo -e ${BBlue}"[*] Installing rofi profile..." ${Color_Off}
+
+	cp -f $DIR/profile/rofibin.sh $PROFILE_DIR/rofibin.sh
+
+	if [[ -f "$PROFILE_DIR/rofibin.sh" ]]; then
+		echo -e ${BGreen}"[*] Successfully Installed.\n" ${Color_Off}
+		exit 0
+	else
+		echo -e ${BRed}"[!] Failed to install.\n" ${Color_Off}
+		exit 1
+	fi
+
+}
+
 # Main
 main() {
 	install_fonts
 	install_themes
+	install_profile
 }
 
 main
