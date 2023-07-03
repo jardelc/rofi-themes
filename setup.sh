@@ -12,8 +12,10 @@ BBlue='\033[1;34m'  BPurple='\033[1;35m' BCyan='\033[1;36m'  BWhite='\033[1;37m'
 
 ## Directories ----------------------------
 DIR=`pwd`
-FONT_DIR="$HOME/.local/share/fonts"
-ROFI_DIR="$HOME/.config/rofi"
+#FONT_DIR="$HOME/.local/share/fonts"
+FONT_DIR="/usr/local/share/fonts"
+#ROFI_DIR="$HOME/.config/rofi"
+ROFI_DIR="/usr/local/share/rofi"
 
 # Install Fonts
 install_fonts() {
